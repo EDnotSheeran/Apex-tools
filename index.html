@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ApiApexTool</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="flex-center hot">
+            <form id="Form">
+                <div>
+                    <p>Tabela:</p>
+                    <input id="Table" type="text">
+                </div>
+                <p>Colunas:</p>
+                <button onclick="addColum()">Add</button>
+                <button onclick="removeColum()">Remove</button>
+                <button class="hot" onclick="submitForm()">Submit</button>
+                <div id="Colums-inputs" class="flex-colum">
+                    <input class="colum" type="text">
+                </div>
+            </form>
+        </div>
+        <div class="flex-center pad-top">
+            <div class="textarea-wrapper">
+                <p class="center-text">Sql Aliasign</p>
+                <textarea id="Convert-area-select" cols="30" rows="10"></textarea>  
+            </div>
+            <div class="textarea-wrapper">
+                <p class="center-text">Pl/SQL Json</p>
+                <textarea id="Convert-area-json" cols="30" rows="10"></textarea> 
+            </div>
+        </div>
+    </div>
+</body>
+</html>
