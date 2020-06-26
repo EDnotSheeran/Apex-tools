@@ -1,3 +1,9 @@
+:root{
+    --text-color: #444;
+    --input-border-color: #bbb;
+    --button-bg-color: #fff;
+    --button-border-color: #bbb;
+}   
 *{
     margin: 0;
     padding: 0;
@@ -13,14 +19,14 @@ html, body {
 p{
     font-size: 20px;
     margin: 5px 0;
-    color: #444;
+    color: var(--text-color);
 }
 input {
     font-size: 16px;
     padding: 5px;
     width: 100%;
     max-width: 200px;
-    border: 1px #aaa solid;
+    border: 1px var(--input-border-color) solid;
     border-radius: 2px;
     text-transform: uppercase;
     margin: 10px 0;
@@ -32,9 +38,9 @@ button {
     font-size: 16px;
     text-transform: capitalize;
     padding: 5px 10px;
-    background: #fff;
-    border: 1px #aaa solid;
-    color: #444;
+    background: var(--button-bg-color);
+    border: 1px var(--button-border-color) solid;
+    color: var(--text-color);
     border-radius: 2px;
 }
 button.hot {
@@ -59,9 +65,6 @@ button.hot {
     align-items: center;
     flex-wrap: wrap;
 }
-.flex-center.hot{
-    background-color: #F8F8F8;
-}
 .textarea-wrapper {
     width: 500px;
     justify-content: center;
@@ -70,7 +73,7 @@ button.hot {
     padding-top: 50px;
 }
 textarea{
-    border: 1px #aaa solid;
+    border: 1px var(--input-border-color) solid;
     width: 100%;
     padding: 5px;
     font-family: monospace;
@@ -79,4 +82,20 @@ textarea{
 #Colums-inputs{
     height: 200px;
     overflow: auto;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+#Colums-inputs::-webkit-scrollbar{
+    width: 5px;
+    background: transparent;
+}
+#Colums-inputs::-webkit-scrollbar-thumb{
+    background: var(--button-border-color);
+    border-radius: 8px;
+}   
+input.colum {
+    margin: 5px auto;
+}
+div.hot{
+    background-color: #ddd;
 }

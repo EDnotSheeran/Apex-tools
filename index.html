@@ -9,17 +9,19 @@
 </head>
 <body>
     <div class="container">
-        <div class="flex-center hot">
+        <div class="flex-center">
             <form id="Form">
                 <div>
                     <p>Tabela:</p>
                     <input id="Table" type="text">
                 </div>
                 <p>Colunas:</p>
-                <button onclick="addColum()">Add</button>
-                <button onclick="removeColum()">Remove</button>
-                <button class="hot" onclick="submitForm()">Submit</button>
-                <div id="Colums-inputs" class="flex-colum">
+                <div class="hot">
+                    <button onclick="addColum()">add</button>
+                    <button onclick="removeColum()">remove</button>
+                    <button class="hot" onclick="submitForm()">submit</button>
+                </div>
+                <div id="Colums-inputs" class="flex-colum hot">
                     <input class="colum" type="text">
                 </div>
             </form>
