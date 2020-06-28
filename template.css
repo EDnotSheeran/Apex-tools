@@ -1,0 +1,273 @@
+@import url('https://fonts.googleapis.com/css2?family=Holtwood+One+SC&display=swap');
+:root {
+    font-family: Ubuntu,Arial,Helvetica,Verdana,sans-serif;;
+    /* colors */
+    --dark-grey: #777777;
+    --light: #F8F8F8;
+    --cyan-blue: #2980B9;
+    /* Elements */
+    --header-bg-color: var(--light);
+    --logo-color: var(--dark-grey);
+    --logo-hot-color: var(--cyan-blue);
+    --nav-link-color: var(--dark-grey);
+    --nav-link-hover-color: var(--cyan-blue);
+    --footer-bg-color: #222222;
+    --button-bg-color: var(--light);
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+*:focus {
+    outline: none;
+}
+html, body {
+    height: auto;
+}
+a {
+    text-decoration: none;
+}
+ul, ol, li {
+    list-style: none;
+}
+button {
+    font-size: 16px;
+    text-transform: capitalize;
+    padding: 5px 10px;
+    background: var(--button-bg-color);
+    border: 0;
+    color: #444;
+    border-radius: 2px;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #eee;
+}
+button.hot {
+    background: rgba(255,255,255,.15);
+    color: #fff;
+    border-color: #256ca7;
+}
+button.hot:hover {
+    background: rgba(255,255,255,.25);
+}
+div#root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+div.ads {
+    height: 100px;
+    background-color: var(--footer-bg-color);
+}
+/* ---------- Header ---------- */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 100px; 
+    background-color: var(--header-bg-color);
+}
+/* ---------- Logo ---------- */
+header div#logo {
+    display: flex;
+    align-items: center;
+}
+header div#logo img{
+    width: 50px;
+}
+header div#logo h1 {
+    font-family: 'Holtwood One SC', serif;
+    font-size: 20px;
+    line-height: 20px;
+    color: var(--logo-color);
+}
+header div#logo h1.hot {
+    font-size: 25px;
+    color: var(--logo-hot-color);
+}
+/* ---------- Navbar Burger ---------- */
+header button#navbar-burger {
+    display: none;
+    width: 50px;
+    height: 50px;
+    padding: 5px;
+    background-color: rgba(0,0,0,.09);
+    border: 0;
+    border-radius: 7px;
+    align-items: center;
+    justify-content: center;
+}
+header button#navbar-burger svg{
+    color: #555;
+}
+/* ---------- Navbar ---------- */
+header nav#navbar ul{
+    display: flex;
+    align-items: center;
+}
+header nav#navbar ul li {
+    display: flex;
+    align-items: center;
+    margin: 0 10px;
+}
+header nav#navbar ul li a.nav-link{
+    text-transform: capitalize;
+    padding: 5px 10px;
+    color: var(--nav-link-color);
+}
+header nav#navbar ul li a.nav-link:hover{
+    color: var(--cyan-blue);
+}
+header nav#navbar svg.icon {
+    width: 18px;
+}
+/* ---------- Header Media Queries ---------- */
+@media only screen and (max-width: 1024px){
+    header {
+        padding: 5px 10px;
+    }
+    header button#navbar-burger {
+        display: flex;
+        z-index: 2;
+    }
+    header nav#navbar {
+        position: absolute;
+        top: 0;
+        left: 0;
+    } 
+    header nav#navbar.toggle-hidden {
+        display: none;
+        z-index: 1;
+    }
+    header nav#navbar ul{
+        flex-direction: column;
+        justify-content: center;
+        width: 100vw;
+        height: 100vh;
+        background-color: var(--light);
+    }
+    header nav#navbar ul li{
+        margin: 7px 0;
+    }
+    header nav#navbar ul a.nav-link{
+        font-size: 25px;
+    }
+    header nav#navbar svg.icon {
+        width: 25px;
+    }
+    .mobile-hidden {
+        display: none;
+    }
+}
+/* ---------- Main ---------- */
+main {
+    flex: 1 0 auto;
+}
+main section {
+    padding: 3rem 7rem;
+    min-height: 500px;
+}
+main section.colorfull {
+    background-color: var(--cyan-blue);
+}
+main  svg{
+    width: 80px;
+    color: white;
+}
+/* sections */
+main section#main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+main section#main #submit{
+    font-size: 22px;
+    font-weight: bold;
+    padding: 12px 20px;
+    border-radius: 5px;
+}
+main section#main div.container{
+    display: flex; 
+}
+main section#main div.container div.center{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+main section#main div.container div.center .buttons-section{
+    display: flex;
+    margin-bottom: 15px;
+}
+main section#main div.container div.center .buttons-section button:first-of-type{
+    margin-left:auto;
+    margin-right: 10px;
+}
+main section#main div.container div.left,
+main section#main div.container div.right{
+    width: 16%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+main section#main p{
+    color: white;
+}
+main section#main label{
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    display: block;
+}
+main section#main input{
+    padding: 5px 10px;
+    font-size: 18px;
+    border: 0;
+    border-radius: 2px;
+    color: #444;
+    margin-bottom: 10px;
+}
+main section#main select{
+    padding: 5px 10px;
+    font-size: 18px;
+    border: 0;
+    border-radius: 2px;
+    color: #444;
+}
+main section#main #Colums-inputs{
+    display: flex;
+    flex-direction: column;
+}
+#Colums-inputs{
+    height: 200px;
+    overflow: auto;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    padding-right: 5px;
+}
+#Colums-inputs::-webkit-scrollbar{
+    width: 5px;
+    background: transparent;
+}
+#Colums-inputs::-webkit-scrollbar-thumb{
+    background: rgba(255,255,255,.5);
+    border-radius: 8px;
+}
+
+/* ---------- Footer ---------- */
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+    background-color: var(--footer-bg-color);
+}
+@media only screen and (max-width: 1024px){
+    .mobile-hidden {
+        display: none !important;
+    }
+}
