@@ -259,29 +259,29 @@ main section#main #Colums-inputs{
     border-radius: 8px;
 }
 /* ---------- Carrousel ---------- */
-div.options {
+div#options {
     height: 100px;
     background-color: var(--footer-bg-color);
     display: flex;
     align-items: center;
     justify-content: center;
 }
-div.options button{
+div#options button{
     font-size: 25px;
     margin: 5px;
     background-color: rgba(255,255,255,.09);
     color: #aaa;
 }
-div.options #get{
+div#options #get{
     color: #827BA6;
 }
-div.options #post{
+div#options #post{
     color: #699342;
 }
-div.options #put{
+div#options #put{
     color: #A28050;
 }
-div.options #delete{
+div#options #delete{
     color: #A8414E;
 }
 #textarea-section {

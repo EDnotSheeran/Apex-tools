@@ -30,6 +30,8 @@ function carrouselToggle(num){
 function submitForm(){
     let carrousel = $('div#carrousel')
     carrousel.classList.remove('notsubmited')
+    let options = $('div#options')
+    options.classList.remove('notsubmited')
 
     let arrColums = Array.prototype.slice.call(document.getElementsByClassName('colum'))
     let table = $('#Table') // Campo de tabela
