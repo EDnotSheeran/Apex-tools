@@ -28,6 +28,9 @@ function carrouselToggle(num){
 }
 // Faz as convercoes e exibe nas areas de texto
 function submitForm(){
+    let main = $('main')
+    main.classList.remove('notsubmited')
+
     let arrColums = Array.prototype.slice.call(document.getElementsByClassName('colum'))
     let table = $('#Table') // Campo de tabela
     table = table.value.trim().toUpperCase()
@@ -41,7 +44,6 @@ function submitForm(){
     // GET all
     $('#Convert-area-get-all').value = getGetAll(table, arrColums)
     $('#uri-all').innerHTML = `${table.toLowerCase()}?pagina={page}`
-    
     window.scrollTo(0,570)
 }
 // JSON

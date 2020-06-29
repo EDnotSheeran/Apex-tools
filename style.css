@@ -162,6 +162,9 @@ header nav#navbar svg.icon {
 main {
     flex: 1 0 auto;
 }
+main.notsubmited{
+    display: none;
+}
 main section {
     padding: 3rem 7rem;
     min-height: 500px;
