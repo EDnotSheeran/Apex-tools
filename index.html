@@ -3,39 +3,148 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ApiApexTool</title>
+    <title>Apex Tools</title>
     <link rel="stylesheet" href="style.css">
     <script defer src="script.js"></script>
+    <link rel="shortcut icon" href="assets/apex_icons/apex-logo-icon.svg" />
 </head>
 <body>
-    <div class="container">
-        <div class="flex-center">
-            <form id="Form">
-                <div>
-                    <p>Tabela:</p>
-                    <input id="Table" type="text">
+    <div id="root">
+        <header>
+            <a href="">
+                <div id="logo">
+                    <img src="assets/apex_icons/apex-logo-icon.svg" alt="">
+                    <div>
+                        <h1 class="hot">Apex</h1>
+                        <h1>tools</h1>
+                    </div>
                 </div>
-                <p>Colunas:</p>
-                <div class="hot">
-                    <button onclick="addColum()">add</button>
-                    <button onclick="removeColum()">remove</button>
-                    <button class="hot" onclick="submitForm()">submit</button>
+            </a>
+            <button id="navbar-burger" onclick="navbarToggle()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            </button>
+            <nav id="navbar" class="toggle-hidden">
+                <ul>
+                    <li><a class="nav-link" href="">about</a></li>
+                    <li><a class="nav-link" href="">learn</a></li>
+                    <li><a class="nav-link" href="">FAQ</a></li>
+                    <li><a class="nav-link" href="">changelog</a></li>
+                    <li><a class="nav-link" href="">contact</a></li>
+                    <li><a class="nav-link" href="https://github.com/EDnotSheeran/Apex-tools">
+                            <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <section id="main" class="colorfull">
+                <div class="container">
+                    <div class="left mobile-hidden">
+                        <svg id="share-solid" viewBox="0 0 512 512"><path fill="currentColor" d="M503.691 189.836L327.687 37.851C312.281 24.546 288 35.347 288 56.015v80.053C127.371 137.907 0 170.1 0 322.326c0 61.441 39.581 122.309 83.333 154.132 13.653 9.931 33.111-2.533 28.077-18.631C66.066 312.814 132.917 274.316 288 272.085V360c0 20.7 24.3 31.453 39.687 18.164l176.004-152c11.071-9.562 11.086-26.753 0-36.328z"></path></svg>
+                        <p>Informe o nome da tabela e suas colunas para comecar.</p>
+                    </div>
+                    <div class="center">
+                        <div>
+                            <label for="table">Tabela:</label>
+                            <input id="Table" type="text" autocomplete="off">
+                        </div>
+                        <div>
+                            <div class="buttons-section">
+                                <label>Colunas:</label>
+                                <button onclick="addColum()">add</button>
+                                <button class="hot" onclick="removeColum()">remove</button>
+                            </div>
+                            <div id="Colums-inputs">
+                                <input class="colum" type="text">
+                                <input class="colum" type="text">
+                                <input class="colum" type="text">
+                                <input class="colum" type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="right">
+                        <select name="" id="">
+                            <option value="">one row</option>
+                            <option value="">all rows</option>
+                        </select>
+                    </div>
                 </div>
-                <div id="Colums-inputs" class="flex-colum hot">
-                    <input class="colum" type="text">
-                </div>
-            </form>
-        </div>
-        <div class="flex-center pad-top">
-            <div class="textarea-wrapper">
-                <p class="center-text">Sql Aliasign</p>
-                <textarea id="Convert-area-select" cols="30" rows="10" spellcheck="false"></textarea>  
+                <button id="submit" class="hot" onclick="submitForm()">submit</button>
+            </section>
+            <div class="options">
+                <button onclick="carrouselToggle(0)">Alias/Json</button>
+                <button id="get" onclick="carrouselToggle(1)">GET</button>
+                <button id="post" onclick="carrouselToggle(2)">POST</button>
+                <button id="put" onclick="carrouselToggle(3)">PUT</button>
+                <button id="delete" onclick="carrouselToggle(4)">DELETE</button>
             </div>
-            <div class="textarea-wrapper">
-                <p class="center-text">Pl/SQL Json</p>
-                <textarea id="Convert-area-json" cols="30" rows="10" spellcheck="false"></textarea> 
+            <div id="carrousel">
+                <!-- Alias/Json -->
+                <section id="textarea-section" class="hot active">
+                    <div>
+                        <div class="textarea-wrapper">
+                            <p class="center-text">Sql Aliasing</p>
+                            <textarea id="Convert-area-select" cols="40" rows="20" spellcheck="false"></textarea>  
+                        </div>
+                        <div class="textarea-wrapper">
+                            <p class="center-text">Pl/SQL Json</p>
+                            <textarea id="Convert-area-json" cols="40" rows="20" spellcheck="false"></textarea> 
+                        </div>
+                    </div>
+                </section>
+                <!-- Alias/Json -->
+                <!-- GET -->
+                <section id="textarea-section" class="hot">
+                    <div>
+                        <div class="textarea-wrapper">
+                            <p class="center-text">GET (one)</p>
+                            <p id="uri-one" class="URI-template"></p>
+                            <textarea id="Convert-area-get-one" cols="40" rows="20" spellcheck="false"></textarea>  
+                        </div>
+                        <div class="textarea-wrapper">
+                            <p class="center-text">GET (all)</p>
+                            <p id="uri-all" class="URI-template"></p>
+                            <textarea id="Convert-area-get-all" cols="40" rows="20" spellcheck="false"></textarea> 
+                        </div>
+                    </div>
+                </section>
+                <!-- GET -->
+                <!-- POST -->
+                <section id="textarea-section" class="hot">
+                    <div>
+                        <div class="textarea-wrapper">
+                            <p class="center-text">POST</p>
+                            <textarea id="Convert-area-post" cols="40" rows="20" spellcheck="false"></textarea> 
+                        </div>
+                    </div>
+                </section>
+                <!-- POST -->
+                <!-- PUT -->
+                <section id="textarea-section" class="hot">
+                    <div>
+                        <div class="textarea-wrapper">
+                            <p class="center-text">PUT</p>
+                            <textarea id="Convert-area-put" cols="40" rows="20" spellcheck="false"></textarea>  
+                        </div>
+                    </div>
+                </section>
+                <!-- PUT -->
+                <!-- DELETE -->
+                <section id="textarea-section" class="hot">
+                    <div>
+                        <div class="textarea-wrapper">
+                            <p class="center-text">DELETE</p>
+                            <textarea id="Convert-area-delete" cols="40" rows="20" spellcheck="false"></textarea>  
+                        </div>
+                    </div>
+                </section>
+                <!-- DELETE -->
             </div>
-        </div>
+        </main>
+        <footer>
+            <p>© 2020 <a href="https://github.com/EDnotSheeran">Edson Rodrigues</a> | <a href="https://github.com/EDnotSheeran">EDnotSheeran</a></p>
+        </footer>
     </div>
 </body>
 </html>
