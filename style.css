@@ -162,9 +162,6 @@ header nav#navbar svg.icon {
 main {
     flex: 1 0 auto;
 }
-main.notsubmited{
-    display: none;
-}
 main section {
     padding: 3rem 7rem;
     min-height: 500px;
@@ -313,6 +310,9 @@ div.options #delete{
     margin: 5px 0;
     text-align: center;
     background-color: rgba(0,0,0,.09);
+}
+.notsubmited{
+    display: none;
 }
 #carrousel section:not(.active){
     display: none;

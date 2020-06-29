@@ -28,8 +28,8 @@ function carrouselToggle(num){
 }
 // Faz as convercoes e exibe nas areas de texto
 function submitForm(){
-    let main = $('main')
-    main.classList.remove('notsubmited')
+    let carrousel = $('div#carrousel')
+    carrousel.classList.remove('notsubmited')
 
     let arrColums = Array.prototype.slice.call(document.getElementsByClassName('colum'))
     let table = $('#Table') // Campo de tabela
