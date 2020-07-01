@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Apex Tools</title>
     <link rel="stylesheet" href="style.css">
-    <script defer src="script.js"></script>
+    <script src="script.js" defer></script>
     <link rel="shortcut icon" href="assets/apex_icons/apex-logo-icon.svg" />
 </head>
 <body>
@@ -56,17 +56,17 @@
                                 <button class="hot" onclick="removeColum()">remove</button>
                             </div>
                             <div id="Colums-inputs">
-                                <input class="colum" type="text">
-                                <input class="colum" type="text">
-                                <input class="colum" type="text">
-                                <input class="colum" type="text">
+                                <input oninput="setSelectPrimaryKey()" class="colum" type="text">
+                                <input oninput="setSelectPrimaryKey()" class="colum" type="text">
+                                <input oninput="setSelectPrimaryKey()" class="colum" type="text">
+                                <input oninput="setSelectPrimaryKey()" class="colum" type="text">
                             </div>
                         </div>
                     </div>
                     <div class="right">
-                        <select name="" id="">
-                            <option value="">one row</option>
-                            <option value="">all rows</option>
+                        <label>Primary key:</label>
+                        <select id="primary-key">
+                            <option value="">-- Primary Key --</option>
                         </select>
                     </div>
                 </div>
@@ -115,6 +115,7 @@
                     <div>
                         <div class="textarea-wrapper">
                             <p class="center-text">POST</p>
+                            <p id="uri-post" class="URI-template"></p>
                             <textarea id="Convert-area-post" cols="40" rows="20" spellcheck="false"></textarea> 
                         </div>
                     </div>

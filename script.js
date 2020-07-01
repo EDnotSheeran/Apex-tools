@@ -1,6 +1,9 @@
-// Retorna o Elemento
-function $(element){
-    return document.querySelector(element)
+function $(element,all = false){
+    if(all){
+        return document.querySelectorAll(element)
+    }else{
+        return document.querySelector(element)
+    }
 }
 // Liga e Desliga a navbar no modo Mobile
 function navbarToggle() {
@@ -8,10 +11,11 @@ function navbarToggle() {
 }
 // Adiciona um input de coluna no formulario
 function addColum(){
-    const el = document.createElement('input')
-    el.classList.add('colum')
-    el.setAttribute('type','text')
-    $('#Colums-inputs').appendChild(el)
+    let input = document.createElement('input')
+    input.classList.add('colum')
+    input.setAttribute('type','text')
+    input.setAttribute('oninput','setSelectPrimaryKey()')
+    document.getElementById('Colums-inputs').appendChild(input)
 }
 // Remove um input de coluna no formulario
 function removeColum(){
@@ -31,16 +35,27 @@ function submitForm(){
     let arrColums = Array.prototype.slice.call(document.getElementsByClassName('colum'))
     let table = $('#Table') // Campo de tabela
     table = table.value.trim().toUpperCase()
+    let pk = getSelectPrimaryKey()
+    console.log(pk)
+    if(pk === ''){
+        alert('Selecione uma chave primaria')
+        return
+    }
     //Json
     $('#Convert-area-json').value = getJson(table,arrColums)
     // Aliasign
     $('#Convert-area-select').value = getAliasing(table, arrColums)
     // GET one
-    $('#Convert-area-get-one').value = getGetOne(table, arrColums)
-    $('#uri-one').innerHTML = `${table.toLowerCase()}?id={id}`
+    $('#Convert-area-get-one').value = getGetOne(table, arrColums, pk)
+    $('#uri-one').innerHTML = `${table.toLowerCase()}?${pk}={${pk}}`
     // GET all
     $('#Convert-area-get-all').value = getGetAll(table, arrColums)
     $('#uri-all').innerHTML = `${table.toLowerCase()}?pagina={page}`
+    // POST
+    $('#Convert-area-post').value = getPost(table, arrColums)
+    $('#uri-post').innerHTML = `${table.toLowerCase()}`
+
+
     window.scrollTo(0,570)
 }
 // JSON
@@ -50,7 +65,7 @@ function getJson(table, arr){
         if(item.value != '')
             change.push(`'${item.value.trim().toUpperCase()}' VALUE ${table}_${item.value.trim().toUpperCase()}`)
     })
-    return `JSON_OBJECT(\n ${change.join(',\n')} \nFORMAT JSON)`
+    return `JSON_OBJECT(\n${change.join(',\n')}\nFORMAT JSON)`
 }
 // ALIASING
 function getAliasing(table, arr){
@@ -62,7 +77,7 @@ function getAliasing(table, arr){
     return `-- tabela ${table}\n` + change.join(',\n')
 }
 // GET ONE
-function getGetOne(table, arr){
+function getGetOne(table, arr, pk){
     let change = []
     arr.map(item=>{
         change.push(`${table}.${item.value.trim().toUpperCase()} as ${table}_${item.value.trim().toUpperCase()}`)
@@ -77,10 +92,10 @@ function getGetOne(table, arr){
     INTO retorno
     FROM (
         SELECT ROWNUM as RN,
-        ${getAliasing(table, arr)}
+${getAliasing(table, arr)}
         FROM ${table} 
         )
-    where ${table}_id = :id;
+    where ${table}_${pk} = :${pk};
     apex_json.parse(retorno);
     -- Retorna o JSON 
     htp.p('{ "${table}":'||retorno||'}');
@@ -102,7 +117,7 @@ function getGetAll(table, arr){
     num_rows number;
     pagination number := 15;
     loop_limit number;
-    begin
+begin
     
     if (:auth = auth_key) then
     -- pega quantas rows tem na tabela
@@ -116,10 +131,10 @@ function getGetAll(table, arr){
     for i in (:page * pagination - 14)..loop_limit
     loop
     SELECT 
-    ${getJson(table, arr)}
+${getJson(table, arr)}
       INTO v_row
       FROM (SELECT ROWNUM as RN, 
-        ${getAliasing(table, arr)}  
+${getAliasing(table, arr)}  
         FROM ${table}) where RN = i;
       v_table := v_table || v_row || ',';
       end loop;
@@ -133,5 +148,45 @@ function getGetAll(table, arr){
       else
       htp.p('{"status":401,"error":"unauthorized"}');
       end if;
-    end;`
+end;`
 }
+function getPost(table, arr){
+    let change = []
+    arr.map(item=>{
+        if(item.value != '')
+            change.push(`${item.value.trim().toUpperCase()}`)
+    })
+    return`BEGIN
+    INSERT INTO ${table}(${change.join(',')}) VALUES(${change.map(x=>':'+x).join(',')});
+htp.p('{"msg":"salvo"}');
+END;`
+}
+
+//  Retorna um Array com os valores dos inputs de coluna
+function getInputColumsValuesArray(){
+    let inputsArray = Array.prototype.slice.call(document.getElementsByClassName('colum'))
+    return inputsArray.map(x=>x.value.trim().toUpperCase()).filter(x=>x != '')
+}
+// Cria cria options com os valores do inputs de coluna
+function setSelectPrimaryKey(){
+    let selectPrimaryKey = document.getElementById('primary-key')
+    selectPrimaryKey.innerHTML = ''
+    
+    let optionIndex = document.createElement('option')
+    optionIndex.innerHTML = '-- Primary Key --'
+    optionIndex.setAttribute('value','')
+    selectPrimaryKey.appendChild(optionIndex)
+
+    let options = getInputColumsValuesArray()
+    options.map(value => {
+        option = document.createElement('option')
+        option.setAttribute('value',value)
+        option.innerHTML = value
+        selectPrimaryKey.appendChild(option)
+    })
+}
+// Retorna o valor da primary key selecionada
+function getSelectPrimaryKey(){
+    let selectPrimaryKey = document.getElementById('primary-key')
+    return selectPrimaryKey.options[selectPrimaryKey.selectedIndex].value.toLowerCase()
+} 
