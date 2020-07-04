@@ -55,7 +55,6 @@ function submitForm(){
     $('#Convert-area-post').value = getPost(table, arrColums)
     $('#uri-post').innerHTML = `${table.toLowerCase()}`
 
-
     window.scrollTo(0,570)
 }
 // JSON
